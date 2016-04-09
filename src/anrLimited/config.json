@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "anrLimited"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-anrLimited-a597463e-d39f-4b62-9ce2-e290bc7b794f;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
