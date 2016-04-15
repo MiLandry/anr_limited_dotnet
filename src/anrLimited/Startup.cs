@@ -111,7 +111,9 @@ namespace anrLimited
             }
 
             // Add static files to the request pipeline.
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+
+            app.UseDefaultFiles();
 
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
