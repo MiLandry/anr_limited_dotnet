@@ -2,30 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/css/draft.css">
     <title>Mikesreallycoolwebpage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="todo.js"></script>
+
+
 </head>
 
-<body>
+<body ng-app>
     <main>
         <header>Hello, world</header>
         <article>
             <p> Below is noise</p>
-            <div id="card">
-            <img src="https://netrunnerdb.com/bundles//netrunnerdbcards//images//cards//en//01001.png" />
-                <button onclick="selectCard()">Select</button>
 
+                
 
-            </div>
+                <div id="cardArea">
+                    <img src="https://netrunnerdb.com/bundles//netrunnerdbcards//images//cards//en//01001.png" />
+                    <button id="selectCard" onclick="selectCard()">Select</button>
+                </div>
+
         </article>
         <aside id="extraLinks"></aside>
         <aside id="sponsor"></aside>
         <footer></footer>
     </main>
     <script>
-		$(function(){
-			//do stuff
-		});
+        $(function () {
+            //do stuff
+        });
     </script>
 </body>
 </html>
