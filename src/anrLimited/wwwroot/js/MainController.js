@@ -1,10 +1,11 @@
 ﻿var MainController = function ($scope) {
 
-    $scope.cardOptions = [dataMine, noise];
+    $scope.cardOptions = [dataMine, scorchedEarth, neuralKatana];
 
     $scope.deckList = [noise];
 
-    $scope.selectCard = function (card) {
+    $scope.selectCard = function (card)
+    {
         list = $scope.deckList;
 
         var i;
@@ -23,8 +24,9 @@
 
     $scope.newCards = function (n)
     {
-        var list = $scope.cardOptions;
-        list = [];
+        console.log("new cards 4 u");
+        $scope.cardOptions = [];
+        var list = [];
         var rand = 01001;
         for (var i = 0; i < n; i++)
         {
@@ -32,6 +34,8 @@
             list.push(card);
 
         }
+
+        $scope.cardOptions = list;
 
     }
 };
@@ -47,6 +51,8 @@ class Card {
 
 noise = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01001.png", "Noise", 1);
 dataMine = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01076.png", "Data Mine", 1);
+scorchedEarth = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01099.png", "Scorched Earth", 1);
+neuralKatana = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01077.png", "Neural Katana", 1);
 
 app.controller("MainController", MainController);
 

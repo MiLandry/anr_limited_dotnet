@@ -13,10 +13,10 @@
 
 <body ng-app="myApp">
     <main>
-        <header>Hello, world</header>
         <article>
-            <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
             <div ng-controller="MainController">
+            <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
+                <br />
 
 
                 <div id="cardArea" ng-repeat="card in cardOptions">
@@ -32,10 +32,6 @@
                     <tr>
                         <th class="tg-yw4l">Card</th>
                         <th class="tg-yw4l">Quantity</th>
-                    </tr>
-                    <tr>
-                        <td class="tg-yw4l">aoei</td>
-                        <td class="tg-yw4l">aoei</td>
                     </tr>
                     <tr ng-repeat="card in deckList">
                         <td class="tg-yw4l">{{card.name}}</td>

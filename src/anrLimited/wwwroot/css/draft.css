@@ -24,6 +24,10 @@
 {
     clear: both;
 }
+#newCardsButton{
+    clear : both;
+    font-size : large;
+}
 
 table, th, td
 {
