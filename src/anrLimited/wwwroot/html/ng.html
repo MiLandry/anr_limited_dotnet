@@ -10,14 +10,14 @@
 <body ng-app ="myApp">
     <div ng-controller="MyController">
 
-    {{ 2 + 2}}
-        {{message}}
-        {{foo}}
+        {{theData}}
 
     <form name="theForm">
-        <input type="search" ng-model="foo" />
-        <input type="submit" value= "Search"/>
+        <input type="search" ng-model="theData" />
+        <input type="submit" value= "Search" ng-click="updateResult(theData)"/>
     </form>
+
+        {{result}}
 
     </div>
 </body>

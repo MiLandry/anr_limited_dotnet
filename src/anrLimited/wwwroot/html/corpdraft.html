@@ -29,6 +29,8 @@
                 </div>
 
             <div id="deckArea">
+
+
                 <table class="tg">
                     <tr>
                         <th class="tg-yw4l">Card</th>
@@ -38,25 +40,9 @@
                         <td class="tg-yw4l">aoei</td>
                         <td class="tg-yw4l">aoei</td>
                     </tr>
-                    <tr>
-                        <td class="tg-yw4l"></td>
-                        <td class="tg-yw4l"></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-yw4l"></td>
-                        <td class="tg-yw4l"></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-yw4l"></td>
-                        <td class="tg-yw4l"></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-yw4l"></td>
-                        <td class="tg-yw4l"></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-yw4l"></td>
-                        <td class="tg-yw4l"></td>
+                    <tr ng-repeat="card in deckList">
+                        <td class="tg-yw4l">{{card.name}}</td>
+                        <td class="tg-yw4l">{{card.quantity}}</td>
                     </tr>
                 </table>
             </div>
