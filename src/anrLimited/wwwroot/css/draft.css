@@ -7,6 +7,8 @@
   border-color : Black;
   border-width : thick;
   padding : 10px;
+  margin : 5px;
+  float : left;
 
 }
 
@@ -16,6 +18,11 @@
     display : block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#deckArea
+{
+    clear: both;
 }
 
 table, th, td

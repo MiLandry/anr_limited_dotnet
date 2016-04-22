@@ -1,6 +1,6 @@
 ﻿var MainController = function ($scope) {
 
-    $scope.cardOptions = [dataMine];
+    $scope.cardOptions = [dataMine, noise];
 
     $scope.deckList = [noise];
 
@@ -20,6 +20,20 @@
             console.log("new card added");
             $scope.deckList.push(card);
     };
+
+    $scope.newCards = function (n)
+    {
+        var list = $scope.cardOptions;
+        list = [];
+        var rand = 01001;
+        for (var i = 0; i < n; i++)
+        {
+            var card = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01001.png", "random card", 1);
+            list.push(card);
+
+        }
+
+    }
 };
 
 class Card {
