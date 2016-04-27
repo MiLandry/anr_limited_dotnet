@@ -1,4 +1,5 @@
-﻿var MainController = function ($scope) {
+﻿(function () {
+var MainController = function ($scope) {
 
     $scope.cardOptions = [dataMine, scorchedEarth, neuralKatana];
 
@@ -56,4 +57,4 @@ neuralKatana = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images
 
 app.controller("MainController", MainController);
 
-
+})();

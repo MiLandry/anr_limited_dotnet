@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="/css/draft.css">
     <title>Mikesreallycoolwebpage</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script src="../js/app.js"></script>
-        <script src="../js/MainController.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/MainController.js"></script>
 
 
 </head>
@@ -15,30 +15,30 @@
     <main>
         <article>
             <div ng-controller="MainController">
-            <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
+                <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
                 <br />
 
 
                 <div id="cardArea" ng-repeat="card in cardOptions">
                     <p>Name : {{card.name}}</p>
-                    <img ng-src="{{card.imgSrc}}"/>
+                    <img ng-src="{{card.imgSrc}}" />
                     <button id="selectCard" ng-click="selectCard(card)">Select</button>
                 </div>
 
-            <div id="deckArea">
+                <div id="deckArea">
 
 
-                <table class="tg">
-                    <tr>
-                        <th class="tg-yw4l">Card</th>
-                        <th class="tg-yw4l">Quantity</th>
-                    </tr>
-                    <tr ng-repeat="card in deckList">
-                        <td class="tg-yw4l">{{card.name}}</td>
-                        <td class="tg-yw4l">{{card.quantity}}</td>
-                    </tr>
-                </table>
-            </div>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l">Card</th>
+                            <th class="tg-yw4l">Quantity</th>
+                        </tr>
+                        <tr ng-repeat="card in deckList">
+                            <td class="tg-yw4l">{{card.name}}</td>
+                            <td class="tg-yw4l">{{card.quantity}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
         </article>

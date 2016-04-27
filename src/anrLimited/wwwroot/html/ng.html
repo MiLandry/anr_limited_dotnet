@@ -4,11 +4,18 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="ng.js"></script>
+    <script src="../js/ng.js"></script>
 
 </head>
 <body ng-app ="myApp">
     <div ng-controller="MyController">
+
+        <div>{{error}}</div>
+        </p>
+            name: {{data.name}}
+        <p>
+
+        <img ng-src="{{data.avatar_url}}" />
 
         {{theData}}
 
