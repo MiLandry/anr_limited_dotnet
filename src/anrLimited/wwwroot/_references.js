@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/app.js" />
+/// <reference path="js/cards.js" />
 /// <reference path="js/maincontroller.js" />
 /// <reference path="js/ng.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
