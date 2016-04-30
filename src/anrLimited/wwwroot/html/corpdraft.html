@@ -13,15 +13,17 @@
 
 </head>
 
-<body ng-app="myApp">
+<body ng-app="anrLimited">
     <main>
         <article>
             <div ng-controller="MainController">
                 <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
                 <br />
+                <button id="newIdsButton" ng-click="newIds(3)">get IDs</button>
+                <br />
 
 
-                <div id="batchArea" ng-repeat="card in cardOptions">
+                <div id="batchArea" ng-repeat="card in currentCardBatch track by $index">
                     <p>Name : {{card.name}}</p>
                     <img ng-src="{{card.imgSrc}}" />
                     <button id="selectCard" ng-click="selectCard(card)">Select</button>

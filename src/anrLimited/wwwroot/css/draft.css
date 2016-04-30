@@ -1,4 +1,4 @@
-﻿#cardArea
+﻿#batchArea
 {
     width : 300px;
     background-color : green;
@@ -24,9 +24,11 @@
 {
     clear: both;
 }
-#newCardsButton{
+button{
     clear : both;
     font-size : large;
+    margin: 5px;
+    
 }
 
 table, th, td

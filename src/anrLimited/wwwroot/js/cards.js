@@ -3,7 +3,7 @@
 
     var cards = (function ()
     {
-
+        //console.log("cards js executing");
         var fdb = new ForerunnerDB();
         var db = fdb.db("myDB");
         var cardCollection = db.collection("card", { primaryKey: "code" });
@@ -11,6 +11,7 @@
         //load cards into the database
         var cards = $.getJSON("../js/cards.json", function (data)
         {
+            console.log("db loading");
             cardCollection.insert(data);
 
             var myCards = cardCollection.find({
@@ -59,11 +60,12 @@
         }
 
 
-        return {}
+        return {
+        }
 
     })();
 
 
-    //var module = angular.module("MainController");
-
+    var module = angular.module("anrLimited");
+    module.factory("cards", cards);
 })();
