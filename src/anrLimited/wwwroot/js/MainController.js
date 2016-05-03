@@ -19,11 +19,9 @@
         scorchedEarth = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01099.png", "Scorched Earth", 1);
         neuralKatana = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01077.png", "Neural Katana", 1);
 
-        //$cards.initializeDatabase();
 
-        $scope.currentCardBatch = [dataMine, scorchedEarth, neuralKatana];
 
-        $scope.deckList = [noise];
+        $scope.deckList = [];
 
         $scope.selectCard = function (card)
         {
@@ -44,15 +42,26 @@
             $scope.deckList.push(card);
         };
 
-        
-
         $scope.newIds = function (n)
         {
             console.log("in new ids");
             $scope.currentCardBatch = [];
             var ids = $cards.getIDBatch();
             $scope.currentCardBatch = ids;
+
+
+
         }
+
+        $scope.newCards = function (n)
+        {
+            $scope.currentCardBatch = [];
+            var theCards = $cards.getNewCardBatch();
+            $scope.currentCardBatch = theCards;
+
+        }
+        
+
         
     };
 

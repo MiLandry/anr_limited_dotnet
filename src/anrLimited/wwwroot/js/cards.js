@@ -16,21 +16,31 @@
             cardCollection.insert(data);
         });
 
-
-
-        var getIDs = function (faction, number)
+        function shuffle(array)
         {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex)
+            {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
 
 
 
-        };
+        
 
-        var getCardBatch = function (number)
-        {
-            var cards = [];
-
-            return cards
-        };
 
         var Card = class Card
         {
@@ -48,8 +58,6 @@
 
         var getIDBatch = function ()
         {
-            console.log("in get id");
-            //return [noise, kate];
             var result = [];
             var arr = cardCollection.find
                 ({
@@ -70,8 +78,34 @@
 
         };
 
+        var getNewCardBatch = function (number)
+        {
+            var result = [];
+            var arr = cardCollection.find
+                ({
+                    $and: [
+                        { type: { $ne: "Identity" } },
+                        { side: "Corp" },
+                        { setname: { $ne: "Draft" } },
+                        {faction: "Jinteki"}
+                    ]
+                });
+
+            shuffle(arr);
+
+            for (var i = 0; i < 3; i++)
+            {
+                var card = new Card('https://netrunnerdb.com' + arr[i].imagesrc, arr[i].title, 1);
+                result.push(card);
+            }
+            return result;
+
+
+        };
+
         return{
-            getIDBatch: getIDBatch
+            getIDBatch: getIDBatch,
+            getNewCardBatch: getNewCardBatch
             //getIDBatch: getIDBatch
         };
 
