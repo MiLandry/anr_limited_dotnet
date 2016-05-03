@@ -1,15 +1,16 @@
 ﻿(function ()
 {
 
-    var cards = (function ()
+    var cards = function ()
     {
-        //console.log("cards js executing");
+        console.log("the method cards executing");
+
         var fdb = new ForerunnerDB();
         var db = fdb.db("myDB");
         var cardCollection = db.collection("card", { primaryKey: "code" });
 
         //load cards into the database
-        var cards = $.getJSON("../js/cards.json", function (data)
+        var cardDatabase = $.getJSON("../js/cards.json", function (data)
         {
             console.log("db loading");
             cardCollection.insert(data);
@@ -59,13 +60,25 @@
             };
         }
 
+        var noise = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01001.png", "Noise", 1);
+        var kate = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01002.png", "kate", 1);
 
-        return {
-        }
 
-    })();
+        var getIDBatch = function ()
+        {
+            console.log("in get id");
+            return [noise, kate];
+        };
 
+        return{
+            getIDBatch: getIDBatch
+            //getIDBatch: getIDBatch
+        };
+
+    };
+
+    // Angular plumbing stuff
 
     var module = angular.module("anrLimited");
-    module.factory("cards", cards);
+    module.factory('$cards', cards);
 })();
