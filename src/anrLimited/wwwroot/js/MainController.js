@@ -50,20 +50,9 @@
         {
             console.log("in new ids");
             $scope.currentCardBatch = [];
-
             var ids = $cards.getIDBatch();
-
-
             $scope.currentCardBatch = ids;
-
-            for (var i = 0; i < n; i++)
-            {
-                $scope.currentCardBatch.push(noise);
-            }
-
         }
-            
-        //$scope.currentCardBatch = $cards.getIds(n);
         
     };
 

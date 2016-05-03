@@ -10,28 +10,10 @@
         var cardCollection = db.collection("card", { primaryKey: "code" });
 
         //load cards into the database
-        var cardDatabase = $.getJSON("../js/cards.json", function (data)
+        $.getJSON("../js/cards.json", function (data)
         {
             console.log("db loading");
             cardCollection.insert(data);
-
-            var myCards = cardCollection.find({
-                quantity: {
-                    "$gt": 0,
-                    "$lt": 5
-                }
-            });
-            //alert("found some cards: " + myCards[5].code);
-
-            //set initial batch
-            var initialBatch = cardCollection.find({
-                type: {
-                    "$eq": "Identity"
-                }
-            });
-
-
-
         });
 
 
@@ -67,7 +49,22 @@
         var getIDBatch = function ()
         {
             console.log("in get id");
-            return [noise, kate];
+            //return [noise, kate];
+            var result = [];
+            var arr = cardCollection.find({
+                type: {
+                    "$eq": "Identity"
+                }
+            });
+
+            for(var i =0; i < 3; i++)
+            {
+                var card = new Card('https://netrunnerdb.com' + arr[i].imagesrc, arr[i].title, 1);
+                result.push(card);
+            }
+            return result;
+
+
         };
 
         return{
