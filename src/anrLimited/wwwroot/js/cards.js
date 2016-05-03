@@ -51,10 +51,14 @@
             console.log("in get id");
             //return [noise, kate];
             var result = [];
-            var arr = cardCollection.find({
-                type: {
-                    "$eq": "Identity"
-                }
+            var arr = cardCollection.find
+                ({
+                $and : [
+                    {type : "Identity"},
+                    {side : "Corp"}
+
+                 ]
+                
             });
 
             for(var i =0; i < 3; i++)
