@@ -55,10 +55,9 @@
                 ({
                 $and : [
                     {type : "Identity"},
-                    {side : "Corp"}
-
+                    { side: "Corp" },   
+                    { setname: { $ne: "Draft" } }
                  ]
-                
             });
 
             for(var i =0; i < 3; i++)
