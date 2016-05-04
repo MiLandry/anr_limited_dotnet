@@ -14,15 +14,14 @@
 
         }
 
-        noise = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01001.png", "Noise", 1);
-        dataMine = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01076.png", "Data Mine", 1);
-        scorchedEarth = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01099.png", "Scorched Earth", 1);
-        neuralKatana = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01077.png", "Neural Katana", 1);
-
-
-
         $scope.deckList = [];
 
+
+
+
+        /**
+        *  This is the callback function for when a user clicks the select button to add that card to his deck
+        */
         $scope.selectCard = function (card)
         {
             list = $scope.deckList;
@@ -43,8 +42,8 @@
             }
 
             //otherwise we add one copy of the card to the deck list.
-
             $scope.deckList.push(card);
+
             //set the next batch of cards
             setNextBatch();
             return;
@@ -77,12 +76,19 @@
 
         var setNextBatch = function()
         {
+            // Hide the entire batch area so that the user cannot accidently add multiple cards from the same batch
             $scope.batchVisibility = 'hidden';
+
             $scope.currentCardBatch = [];
             var theCards = $cards.getNewCardBatch();
+
             $scope.currentCardBatch = theCards;
+
+            //now wait until the images have loaded
+
+
+            //then reveal the new batch
             $interval(revealBatchArea,2000);
-            
         }
 
         $scope.style = function()
@@ -95,6 +101,11 @@
         var revealBatchArea = function()
         {
             $scope.batchVisibility = 'visible';
+        }
+
+        $scope.revealCardArea = function (card)
+        {
+            //alert('revealCardAreacalled');
         }
 
         

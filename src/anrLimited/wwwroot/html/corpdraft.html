@@ -17,7 +17,9 @@
     <main>
         <article>
             <div ng-controller="MainController">
-                {{batchArea}}
+                <br />
+                <br />
+
                 <button id="draftRunnerBtn" ng-click="newRunnerIDs(3)">Draft Runner</button>
                 <button id="draftCorpBtn" ng-click="newCorpIDs(3)">Draft Corp</button>
                 <button id="newCardsBtn" ng-click="newCards(3)">New Cards</button>
@@ -27,7 +29,7 @@
 
                 <div id="batchArea" ng-style="{'visibility': batchVisibility}" ng-repeat="card in currentCardBatch track by $index">
                     <p>Name : {{card.name}}</p>
-                    <img ng-src="{{card.imgSrc}}" />
+                    <img ng-src="{{card.imgSrc}}"  imageonload="revealCardArea()" />
                     <button id="selectCard" ng-click="selectCard(card)">Select</button>
                 </div>
 
