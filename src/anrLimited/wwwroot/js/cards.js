@@ -70,8 +70,8 @@
 
             for(var i =0; i < 3; i++)
             {
-                var card = new Card('https://netrunnerdb.com' + arr[i].imagesrc, arr[i].title, 1);
-                result.push(card);
+                
+                result.push(arr[i]);
             }
             return result;
 
@@ -82,21 +82,19 @@
         {
             var result = [];
             var arr = cardCollection.find
-                ({
-                    $and: [
-                        { type: { $ne: "Identity" } },
-                        { side: "Corp" },
-                        { setname: { $ne: "Draft" } },
-                        {faction: "Jinteki"}
-                    ]
-                });
-
-            shuffle(arr);
+               ({
+                   $and: [
+                       { type: { $ne: "Identity" } },
+                       { side: "Corp" },
+                       { setname: { $ne: "Draft" } },
+                       { faction: "Jinteki" }
+                   ]
+               });
 
             for (var i = 0; i < 3; i++)
             {
-                var card = new Card('https://netrunnerdb.com' + arr[i].imagesrc, arr[i].title, 1);
-                result.push(card);
+
+                result.push(arr[i]);
             }
             return result;
 

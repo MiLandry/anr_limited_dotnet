@@ -8,6 +8,7 @@ app.directive('imageonload', function ()
         {
             element.bind('load', function ()
             {
+                
                 $scope.$apply(attrs.imageonload);
             });
         }

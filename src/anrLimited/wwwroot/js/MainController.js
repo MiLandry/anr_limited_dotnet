@@ -93,9 +93,7 @@
 
         $scope.style = function()
         {
-            $scope.batchVisibility = 'visible';
 
-            //$scope.batchAreaStyle = "{'background-color':'blue'}";
         };
         
         var revealBatchArea = function()
@@ -105,7 +103,11 @@
 
         $scope.revealCardArea = function (card)
         {
-            //alert('revealCardAreacalled');
+            var id = card.code;
+            var selector = '#' + id;
+            var currentBG = $(selector).css("visibility", "visible");
+            //alert(currentBG);
+
         }
 
         

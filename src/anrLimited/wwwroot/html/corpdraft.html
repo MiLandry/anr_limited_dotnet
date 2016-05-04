@@ -26,12 +26,16 @@
                 <button id="styleBtn" ng-click= "style()">Style</button>
                 <br />
 
+                <div id="batchArea">
 
-                <div id="batchArea" ng-style="{'visibility': batchVisibility}" ng-repeat="card in currentCardBatch track by $index">
-                    <p>Name : {{card.name}}</p>
-                    <img ng-src="{{card.imgSrc}}"  imageonload="revealCardArea()" />
-                    <button id="selectCard" ng-click="selectCard(card)">Select</button>
+                    <div id ="{{card.code}}"class="cardArea" ng-style="{'visibility': batchVisibility}" ng-repeat="card in currentCardBatch track by $index">
+                        <p>Name : {{card.title}}</p>
+                        <img ng-src="{{'https://netrunnerdb.com/' + card.imagesrc}}"  imageonload="revealCardArea(card)" />
+                        <button id="selectCard" ng-click="selectCard(card)">Select</button>
+                    </div>
+
                 </div>
+
 
                 <div id="deckArea">
 
