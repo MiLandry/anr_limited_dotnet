@@ -2,6 +2,7 @@
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/app.js" />
 /// <reference path="js/cards.js" />
+/// <reference path="js/config.js" />
 /// <reference path="js/maincontroller.js" />
 /// <reference path="js/ng.js" />
 /// <reference path="lib/angular/angular.js" />

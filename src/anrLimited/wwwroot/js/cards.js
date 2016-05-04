@@ -3,7 +3,6 @@
 
     var cards = function ()
     {
-        console.log("the method cards executing");
 
         var fdb = new ForerunnerDB();
         var db = fdb.db("myDB");
@@ -12,7 +11,6 @@
         //load cards into the database
         $.getJSON("../js/cards.json", function (data)
         {
-            console.log("db loading");
             cardCollection.insert(data);
         });
 
@@ -56,7 +54,7 @@
         var kate = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01002.png", "kate", 1);
 
 
-        var getIDBatch = function ()
+        var getCorpIDBatch = function ()
         {
             var result = [];
             var arr = cardCollection.find
@@ -67,6 +65,8 @@
                     { setname: { $ne: "Draft" } }
                  ]
             });
+
+            shuffle(arr);
 
             for(var i =0; i < 3; i++)
             {
@@ -104,7 +104,7 @@
         };
 
         return{
-            getIDBatch: getIDBatch,
+            getCorpIDBatch: getCorpIDBatch,
             getNewCardBatch: getNewCardBatch
             //getIDBatch: getIDBatch
         };

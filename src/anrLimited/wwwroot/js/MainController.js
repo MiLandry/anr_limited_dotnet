@@ -1,6 +1,6 @@
 ﻿(function ()
 {
-    var MainController = function ($scope, $cards)
+    var MainController = function ($scope, $cards, $interval)
     {
 
         class Card
@@ -28,30 +28,27 @@
             list = $scope.deckList;
 
             var i;
+
+            //if the card is already in the deck list, then we increment that card by one and return
             for (i = 0; i < list.length; i++)
             {
                 if (list[i] === card)
                 {
-                    console.log("card was found");
                     list[i].quantity++;
+
+                    //set the next batch of cards
+                    setNextBatch();
                     return;
                 }
             }
 
-            console.log("new card added");
+            //otherwise we add one copy of the card to the deck list.
+
             $scope.deckList.push(card);
+            //set the next batch of cards
+            setNextBatch();
+            return;
         };
-
-        $scope.newIds = function (n)
-        {
-            console.log("in new ids");
-            $scope.currentCardBatch = [];
-            var ids = $cards.getIDBatch();
-            $scope.currentCardBatch = ids;
-
-
-
-        }
 
         $scope.newCards = function (n)
         {
@@ -60,7 +57,45 @@
             $scope.currentCardBatch = theCards;
 
         }
+
+        $scope.newCorpIDs = function ()
+        {
+            $scope.currentCardBatch
+            $scope.currentCardBatch = [];
+            var ids = $cards.getCorpIDBatch();
+            $scope.currentCardBatch = ids;
+
+        }
+
+        $scope.newRunnerIDs = function ()
+        {
+            $scope.currentCardBatch = [];
+            var ids = $cards.getIDBatch();
+            $scope.currentCardBatch = ids;
+
+        }
+
+        var setNextBatch = function()
+        {
+            $scope.batchVisibility = 'hidden';
+            $scope.currentCardBatch = [];
+            var theCards = $cards.getNewCardBatch();
+            $scope.currentCardBatch = theCards;
+            $interval(revealBatchArea,2000);
+            
+        }
+
+        $scope.style = function()
+        {
+            $scope.batchVisibility = 'visible';
+
+            //$scope.batchAreaStyle = "{'background-color':'blue'}";
+        };
         
+        var revealBatchArea = function()
+        {
+            $scope.batchVisibility = 'visible';
+        }
 
         
     };

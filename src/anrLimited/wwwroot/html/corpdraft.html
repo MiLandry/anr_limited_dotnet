@@ -17,13 +17,15 @@
     <main>
         <article>
             <div ng-controller="MainController">
-                <button id="newCardsButton" ng-click="newCards(3)">New Cards</button>
-                <br />
-                <button id="newIdsButton" ng-click="newIds(3)">get IDs</button>
+                {{batchArea}}
+                <button id="draftRunnerBtn" ng-click="newRunnerIDs(3)">Draft Runner</button>
+                <button id="draftCorpBtn" ng-click="newCorpIDs(3)">Draft Corp</button>
+                <button id="newCardsBtn" ng-click="newCards(3)">New Cards</button>
+                <button id="styleBtn" ng-click= "style()">Style</button>
                 <br />
 
 
-                <div id="batchArea" ng-repeat="card in currentCardBatch track by $index">
+                <div id="batchArea" ng-style="{'visibility': batchVisibility}" ng-repeat="card in currentCardBatch track by $index">
                     <p>Name : {{card.name}}</p>
                     <img ng-src="{{card.imgSrc}}" />
                     <button id="selectCard" ng-click="selectCard(card)">Select</button>
@@ -37,7 +39,7 @@
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
                         </tr>
-                        <tr ng-repeat="card in deckList">
+                        <tr ng-repeat="card in deckList track by $index">
                             <td class="tg-yw4l">{{card.name}}</td>
                             <td class="tg-yw4l">{{card.quantity}}</td>
                         </tr>
