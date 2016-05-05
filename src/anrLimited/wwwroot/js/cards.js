@@ -35,6 +35,7 @@
             return array;
         }
 
+        //private
         var getCardBatch = function(cards, number)
         {
             var result = [];
@@ -82,22 +83,44 @@
 
         var getNewCardBatch = function (number)
         {
-            var result = [];
-            var arr = cardCollection.find
+            var arr = [];
+
+            // In faction batch
+            if (Math.random() > $config.OOFWeight)
+            {
+                arr = cardCollection.find
                ({
                    $and: [
                        { type: { $ne: "Identity" } },
                        { side: $config.side },
                        { setname: { $ne: "Draft" } },
-                       { faction: $config.faction }
+                       { $or: [{ faction: $config.faction }, { faction: 'Neutral' }] }
                    ]
                });
 
+            }
+
+                //out of faction batch
+            else
+            {
+                arr = cardCollection.find
+               ({
+                   $and: [
+                       { type: { $ne: "Identity" } },
+                       { type: { $ne: "Agenda" } },
+                       { side: $config.side },
+                       { setname: { $ne: "Draft" } },
+                       { faction: { $ne: $config.faction } },
+                       { faction: { $ne: 'Neutral' } },
+                   ]
+               });
+            }
+
             shuffle(arr);
+            var result = [];
 
             for (var i = 0; i < 3; i++)
             {
-
                 result.push(arr[i]);
             }
             return result;

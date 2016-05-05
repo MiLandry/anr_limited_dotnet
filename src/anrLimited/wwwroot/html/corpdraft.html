@@ -46,10 +46,12 @@
                         <tr>
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
+                            <th class="tg-yw4l">Type</th>
                         </tr>
                         <tr ng-repeat="card in deckList track by $index">
                             <td class="tg-yw4l">{{card.title}}</td>
                             <td class="tg-yw4l">{{card.quantity}}</td>
+                            <td class="tg-yw4l">{{card.type}}</td>
                         </tr>
                     </table>
                     </div>

@@ -3,7 +3,9 @@
 
     var config = function ()
     {
-        return {}
+        return {
+            OOFWeight: .2
+        }
 
 
     };
