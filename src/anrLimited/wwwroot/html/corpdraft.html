@@ -47,11 +47,14 @@
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
                             <th class="tg-yw4l">Type</th>
+                            <th class="tg-yw4l">Move to SB</th>
+                            
                         </tr>
                         <tr ng-repeat="card in deckList track by $index">
                             <td class="tg-yw4l">{{card.title}}</td>
                             <td class="tg-yw4l">{{card.quantity}}</td>
                             <td class="tg-yw4l">{{card.type}}</td>
+                            <td class="tg-yw4l"><button ng-click="moveToSideboard(card)">Move</button></td>
                         </tr>
                     </table>
                     </div>
@@ -63,10 +66,12 @@
                         <tr>
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
+                            <th class="tg-yw4l">Move to SB</th>
                         </tr>
                         <tr ng-repeat="card in sideboard track by $index">
                             <td>{{card.title}}</td>
-                            <td>{{card.quantity}}</td>
+                            <td>{{card.SBCount}}</td>
+                            <td class="tg-yw4l"><button ng-click="moveToDeck(card)">Move</button></td>
                         </tr>
                     </table>
                     </div>

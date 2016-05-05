@@ -129,12 +129,19 @@
 
         var getStartingSideboard = function(faction)
         {
+            var SB = [];
+
             if (faction === 'Corp')
             {
             var arr = cardCollection.find
                ({
                    title : 'Hedge Fund'
                });
+
+            var HF = arr[0];
+            HF.quantity = 0;
+            HF.SBCount = 3;
+            SB.push(HF);
             }
 
             else
@@ -145,7 +152,7 @@
                });
             }
 
-            return arr;
+            return SB;
         }
 
         return{

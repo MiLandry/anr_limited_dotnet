@@ -129,6 +129,52 @@
             $scope.sideboard = $cards.getStartingSideboard();
         }
 
+        $scope.moveToSideboard = function(card)
+        {
+            deckList = $scope.deckList;
+            //decremint decklist by one
+            var i = indexOfCard(deckList, card)
+            console.log(deckList[i]);
+            deckList[i].quantity--;
+
+            //increment sideboard by one
+            SB = $scope.sideboard;
+            var j = indexOfCard(SB, card);
+            if (j >= 0)
+            {
+                SB[j].SBCount++;
+            }
+            else
+            {
+                card.SBCount = 1;
+                SB.push(card);
+            }
+        }
+
+        $scope.moveToDeck = function (card)
+        {
+            //decrement sideboard by one
+            SB = $scope.sideboard;
+
+            var j = indexOfCard(SB, card);
+            SB[j].SBCount--;
+
+            //increment decklist by one
+            deckList = $scope.deckList;
+            var k = indexOfCard(deckList, card);
+            if (k >= 0)
+            {
+                deckList[k].quantity++;
+
+            }
+            else
+            {
+                card.quantity = 1;
+                deckList.push(card)
+            }
+        }
+
+
 
         
     };
