@@ -1,22 +1,10 @@
 ﻿(function ()
 {
-    var MainController = function ($scope, $cards, $interval)
+    var MainController = function ($scope, $cards, $timeout)
     {
 
-        class Card
-        {
-            constructor(imgSrc, name, quantity)
-            {
-                this.imgSrc = imgSrc;
-                this.name = name;
-                this.quantity = quantity;
-            }
-
-        }
-
         $scope.deckList = [];
-
-
+        $scope.sideboard = [];
 
 
         /**
@@ -28,10 +16,11 @@
 
             var i;
 
+
             //if the card is already in the deck list, then we increment that card by one and return
             for (i = 0; i < list.length; i++)
             {
-                if (list[i] === card)
+                if (list[i].title === card.title)
                 {
                     list[i].quantity++;
 
@@ -41,7 +30,9 @@
                 }
             }
 
-            //otherwise we add one copy of the card to the deck list.
+            //otherwise we add one copy of the card to the deck list.  We need to set the quantity to 1,
+            //because the raw "quantity" property stores the amount of copies of that card that ships with its containing product.
+            card.quantity = 1;
             $scope.deckList.push(card);
 
             //set the next batch of cards
@@ -77,10 +68,10 @@
         var setNextBatch = function()
         {
             // Hide the entire batch area so that the user cannot accidently add multiple cards from the same batch
-            $scope.batchVisibility = 'hidden';
+            $scope.cardAreasVisibility = 'hidden';
 
             $scope.currentCardBatch = [];
-            var theCards = $cards.getNewCardBatch();
+            var theCards = $cards.getNewCardBatch(3);
 
             $scope.currentCardBatch = theCards;
 
@@ -88,7 +79,7 @@
 
 
             //then reveal the new batch
-            $interval(revealBatchArea,2000);
+            $timeout(revealcardAreas, 1000);
         }
 
         $scope.style = function()
@@ -98,7 +89,13 @@
         
         var revealBatchArea = function()
         {
-            $scope.batchVisibility = 'visible';
+            //$scope.batchVisibility = 'visible';
+        }
+
+        var revealcardAreas = function()
+        {
+            console.log("reveal card calls");
+            $scope.cardAreasVisibility = 'visible';
         }
 
         $scope.revealCardArea = function (card)
@@ -109,6 +106,12 @@
             //alert(currentBG);
 
         }
+
+        $scope.setSideboard = function ()
+        {
+            $scope.sideboard = $cards.getStartingSideboard();
+        }
+
 
         
     };

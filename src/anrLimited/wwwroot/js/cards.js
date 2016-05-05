@@ -54,7 +54,7 @@
         var kate = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01002.png", "kate", 1);
 
 
-        var getCorpIDBatch = function ()
+        var getCorpIDBatch = function (number)
         {
             var result = [];
             var arr = cardCollection.find
@@ -91,6 +91,8 @@
                    ]
                });
 
+            shuffle(arr);
+
             for (var i = 0; i < 3; i++)
             {
 
@@ -98,12 +100,24 @@
             }
             return result;
 
-
         };
+
+        var getStartingSideboard = function()
+        {
+
+            var arr = cardCollection.find
+               ({
+                   title : 'Hedge Fund'
+               });
+
+            return arr;
+        }
 
         return{
             getCorpIDBatch: getCorpIDBatch,
-            getNewCardBatch: getNewCardBatch
+            getNewCardBatch: getNewCardBatch,
+            getStartingSideboard: getStartingSideboard
+           // getIDBatch: getIDBatch
             //getIDBatch: getIDBatch
         };
 

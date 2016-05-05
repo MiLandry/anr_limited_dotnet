@@ -16,41 +16,61 @@
 <body ng-app="anrLimited">
     <main>
         <article>
-            <div ng-controller="MainController">
+            <div ng-controller="MainController" id="controller">
                 <br />
                 <br />
 
                 <button id="draftRunnerBtn" ng-click="newRunnerIDs(3)">Draft Runner</button>
                 <button id="draftCorpBtn" ng-click="newCorpIDs(3)">Draft Corp</button>
-                <button id="newCardsBtn" ng-click="newCards(3)">New Cards</button>
-                <button id="styleBtn" ng-click= "style()">Style</button>
+                <button id="styleBtn" ng-click= "setSideboard()">Style</button>
                 <br />
 
                 <div id="batchArea">
 
-                    <div id ="{{card.code}}"class="cardArea" ng-style="{'visibility': batchVisibility}" ng-repeat="card in currentCardBatch track by $index">
+                    <div id ="{{card.code}}" class="cardAreas" ng-style="{'visibility': cardAreasVisibility}" ng-repeat="card in currentCardBatch track by $index">
                         <p>Name : {{card.title}}</p>
-                        <img ng-src="{{'https://netrunnerdb.com/' + card.imagesrc}}"  imageonload="revealCardArea(card)" />
+                        <img ng-src="{{'https://netrunnerdb.com/' + card.imagesrc}}"/>
                         <button id="selectCard" ng-click="selectCard(card)">Select</button>
                     </div>
 
                 </div>
+                <br />
 
 
-                <div id="deckArea">
+                <div id="bottomThird">   
 
-
-                    <table class="tg">
+                    <div id="deckArea">
+                        <h2>Deck</h2>
+                    <table id="deckTable">
                         <tr>
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
                         </tr>
                         <tr ng-repeat="card in deckList track by $index">
-                            <td class="tg-yw4l">{{card.name}}</td>
+                            <td class="tg-yw4l">{{card.title}}</td>
                             <td class="tg-yw4l">{{card.quantity}}</td>
                         </tr>
                     </table>
+                    </div>
+
+
+                    <div id="sideboardArea">
+                        <h2>sideboard</h2>
+                    <table id="sideboardTable">
+                        <tr>
+                            <th class="tg-yw4l">Card</th>
+                            <th class="tg-yw4l">Quantity</th>
+                        </tr>
+                        <tr ng-repeat="card in sideboard track by $index">
+                            <td>{{card.title}}</td>
+                            <td>{{card.quantity}}</td>
+                        </tr>
+                    </table>
+                    </div>
+
                 </div>
+
+
             </div>
 
         </article>

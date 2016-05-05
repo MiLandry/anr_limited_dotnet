@@ -1,9 +1,16 @@
-﻿#batchArea
+﻿#bottomThird
 {
-    background-color : blue;
 }
 
-.cardArea
+#batchArea
+{
+    margin-left: 27%;
+    height: 500px;
+
+
+}
+
+.cardAreas
 {
     width : 300px;
     background-color : green;
@@ -25,10 +32,9 @@
     margin-right: auto;
 }
 
-#deckArea
-{
-    clear: both;
-}
+
+
+
 button{
     clear : both;
     font-size : large;
@@ -38,5 +44,26 @@ button{
 
 table, th, td
 {
- border : 1px solid black;
+ border : 2px solid black;
+ font-size: xx-large;
+
+}
+
+table
+{
+
+}
+
+
+#deckArea
+{
+     margin-left : 40px;
+     clear:left;
+     float: left;
+}
+
+#sideboardArea
+{
+     margin-left : 1000px;
+     float: left;
 }
