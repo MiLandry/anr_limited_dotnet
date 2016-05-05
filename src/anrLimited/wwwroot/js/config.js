@@ -3,6 +3,7 @@
 
     var config = function ()
     {
+        return {}
 
 
     };

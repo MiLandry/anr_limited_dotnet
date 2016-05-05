@@ -1,10 +1,22 @@
 ﻿(function ()
 {
-    var MainController = function ($scope, $cards, $timeout)
+    var MainController = function ($scope, $cards, $timeout, $config)
     {
 
         $scope.deckList = [];
         $scope.sideboard = [];
+        function indexOfCard(deckList, card)
+        {
+            for (var i = 0; i < deckList.length; i++)
+            {
+                if (deckList[i].code == card.code)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        };
+
 
 
         /**
@@ -12,28 +24,34 @@
         */
         $scope.selectCard = function (card)
         {
-            list = $scope.deckList;
-
-            var i;
-
-
-            //if the card is already in the deck list, then we increment that card by one and return
-            for (i = 0; i < list.length; i++)
-            {
-                if (list[i].title === card.title)
-                {
-                    list[i].quantity++;
-
-                    //set the next batch of cards
-                    setNextBatch();
-                    return;
-                }
-            }
-
+            deckList = $scope.deckList;
             //otherwise we add one copy of the card to the deck list.  We need to set the quantity to 1,
             //because the raw "quantity" property stores the amount of copies of that card that ships with its containing product.
             card.quantity = 1;
-            $scope.deckList.push(card);
+
+            //if its an ID, add it to the list and tell the configuration which side and faction to use
+            // initialize the sideboard
+            if (card.type === "Identity")
+            {
+                $config.side = card.side;
+                $config.faction = card.faction;
+                $scope.sideboard = $cards.getStartingSideboard(card.side);
+                $scope.deckList.push(card);
+            }
+
+            //if the card is already in the deck list, then we increment that card by one and return
+            else if (indexOfCard(deckList, card) > 0)
+            {
+                var i = indexOfCard(deckList, card);
+                $scope.deckList[i].quantity++;
+
+            }
+
+            //otherwise, add the card to the deck list
+            else
+            {
+                $scope.deckList.push(card);
+            }
 
             //set the next batch of cards
             setNextBatch();
@@ -48,11 +66,10 @@
 
         }
 
-        $scope.newCorpIDs = function ()
+        $scope.newCorpIDs = function (number)
         {
-            $scope.currentCardBatch
             $scope.currentCardBatch = [];
-            var ids = $cards.getCorpIDBatch();
+            var ids = $cards.getCorpIDBatch(number);
             $scope.currentCardBatch = ids;
 
         }
@@ -60,7 +77,7 @@
         $scope.newRunnerIDs = function ()
         {
             $scope.currentCardBatch = [];
-            var ids = $cards.getIDBatch();
+            var ids = $cards.getRunnerIDBatch();
             $scope.currentCardBatch = ids;
 
         }

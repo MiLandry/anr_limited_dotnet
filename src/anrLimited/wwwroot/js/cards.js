@@ -1,7 +1,7 @@
 ﻿(function ()
 {
 
-    var cards = function ()
+    var cards = function ($config)
     {
 
         var fdb = new ForerunnerDB();
@@ -35,47 +35,49 @@
             return array;
         }
 
-
-
-        
-
-
-        var Card = class Card
+        var getCardBatch = function(cards, number)
         {
-            constructor(imgSrc, name, quantity)
+            var result = [];
+            shuffle(cards);
+
+            for (var i = 0; i < number; i++)
             {
-                this.imgSrc = imgSrc;
-                this.name = name;
-                this.quantity = quantity;
-            };
+
+                result.push(cards[i]);
+            }
+            return result;
+
         }
 
-        var noise = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01001.png", "Noise", 1);
-        var kate = new Card("https://netrunnerdb.com/bundles/netrunnerdbcards/images//cards/en//01002.png", "kate", 1);
+
+        var getRunnerIDBatch = function()
+        {
+            var runnerIDCards = cardCollection.find
+                    ({
+                        $and: [
+                            { type: "Identity" },
+                            { side: "Runner" },
+                            { setname: { $ne: "Draft" } }
+                        ]
+                    });
+
+            return getCardBatch(runnerIDCards, 3);
+
+        }
 
 
         var getCorpIDBatch = function (number)
         {
-            var result = [];
-            var arr = cardCollection.find
-                ({
-                $and : [
-                    {type : "Identity"},
-                    { side: "Corp" },   
-                    { setname: { $ne: "Draft" } }
-                 ]
-            });
+            var corpIDCards = cardCollection.find
+                    ({
+                        $and: [
+                            { type: "Identity" },
+                            { side: "Corp" },
+                            { setname: { $ne: "Draft" } }
+                        ]
+                    });
 
-            shuffle(arr);
-
-            for(var i =0; i < 3; i++)
-            {
-                
-                result.push(arr[i]);
-            }
-            return result;
-
-
+            return getCardBatch(corpIDCards, number);
         };
 
         var getNewCardBatch = function (number)
@@ -85,9 +87,9 @@
                ({
                    $and: [
                        { type: { $ne: "Identity" } },
-                       { side: "Corp" },
+                       { side: $config.side },
                        { setname: { $ne: "Draft" } },
-                       { faction: "Jinteki" }
+                       { faction: $config.faction }
                    ]
                });
 
@@ -102,19 +104,30 @@
 
         };
 
-        var getStartingSideboard = function()
+        var getStartingSideboard = function(faction)
         {
-
+            if (faction === 'Corp')
+            {
             var arr = cardCollection.find
                ({
                    title : 'Hedge Fund'
                });
+            }
+
+            else
+            {
+                var arr = cardCollection.find
+               ({
+                   title : 'Sure Gamble'
+               });
+            }
 
             return arr;
         }
 
         return{
             getCorpIDBatch: getCorpIDBatch,
+            getRunnerIDBatch: getRunnerIDBatch,
             getNewCardBatch: getNewCardBatch,
             getStartingSideboard: getStartingSideboard
            // getIDBatch: getIDBatch
