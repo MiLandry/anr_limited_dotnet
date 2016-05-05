@@ -5,6 +5,8 @@
 
         $scope.deckList = [];
         $scope.sideboard = [];
+        $scope.cardsPerBatch = 4;
+
         function indexOfCard(deckList, card)
         {
             for (var i = 0; i < deckList.length; i++)
@@ -36,6 +38,7 @@
                 $config.side = card.side;
                 $config.faction = card.faction;
                 $scope.sideboard = $cards.getStartingSideboard(card.side);
+                $scope.cardsRemaining = 36;
                 $scope.deckList.push(card);
             }
 
@@ -58,17 +61,11 @@
             return;
         };
 
-        $scope.newCards = function (n)
-        {
-            $scope.currentCardBatch = [];
-            var theCards = $cards.getNewCardBatch();
-            $scope.currentCardBatch = theCards;
-
-        }
-
         $scope.newCorpIDs = function (number)
         {
             $scope.currentCardBatch = [];
+            $scope.deckList = [];
+            $scope.sideboard = [];
             var ids = $cards.getCorpIDBatch(number);
             $scope.currentCardBatch = ids;
 
@@ -77,6 +74,8 @@
         $scope.newRunnerIDs = function ()
         {
             $scope.currentCardBatch = [];
+            $scope.deckList = [];
+            $scope.sideboard = [];
             var ids = $cards.getRunnerIDBatch();
             $scope.currentCardBatch = ids;
 
@@ -86,9 +85,10 @@
         {
             // Hide the entire batch area so that the user cannot accidently add multiple cards from the same batch
             $scope.cardAreasVisibility = 'hidden';
+            $scope.cardsRemaining--;
 
             $scope.currentCardBatch = [];
-            var theCards = $cards.getNewCardBatch(3);
+            var theCards = $cards.getNewCardBatch($scope.cardsPerBatch);
 
             $scope.currentCardBatch = theCards;
 
@@ -174,7 +174,22 @@
             }
         }
 
+        $scope.getHelp = function()
+        {
+            getHelp();
+        }
 
+        $scope.decreaseBatchSize = function()
+        {
+            $scope.cardsPerBatch--;
+
+        }
+
+        $scope.increaseBatchSize = function()
+        {
+            $scope.cardsPerBatch++;
+
+        }
 
         
     };

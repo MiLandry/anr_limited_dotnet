@@ -119,7 +119,7 @@
             shuffle(arr);
             var result = [];
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < number; i++)
             {
                 result.push(arr[i]);
             }
@@ -140,8 +140,39 @@
 
             var HF = arr[0];
             HF.quantity = 0;
-            HF.SBCount = 3;
+            HF.SBCount = 2;
             SB.push(HF);
+
+            arr = cardCollection.find
+               ({
+                   title: 'Private Contracts'
+               });
+            
+            var PC = arr[0];
+            PC.quantity = 0;
+            PC.SBCount = 3;
+            SB.push(PC);
+
+            arr = cardCollection.find
+               ({
+                   title: 'Priority Requisition'
+               });
+
+            var PR = arr[0];
+            PR.quantity = 0;
+            PR.SBCount = 2;
+            SB.push(PR);
+
+            arr = cardCollection.find
+               ({
+                   title: 'Private Security Force'
+               });
+
+                var PSF = arr[0];
+                PSF.quantity = 0;
+                PSF.SBCount = 2;
+                SB.push(PSF);
+
             }
 
             else
@@ -150,6 +181,52 @@
                ({
                    title : 'Sure Gamble'
                });
+
+                var SG = arr[0];
+                SG.quantity = 0;
+                SG.SBCount = 2;
+                SB.push(SG);
+
+                var arr = cardCollection.find
+               ({
+                   title: 'Force of Nature'
+               });
+
+                var FN = arr[0];
+                FN.quantity = 0;
+                FN.SBCount = 2;
+                SB.push(FN);
+
+                var arr = cardCollection.find
+                ({
+                  title: 'Pipeline'
+                });
+
+                var PL = arr[0];
+                PL.quantity = 0;
+                PL.SBCount = 2;
+                SB.push(PL);
+
+                var arr = cardCollection.find
+                ({
+                    title: 'Aurora'
+                });
+
+                var Au = arr[0];
+                Au.quantity = 0;
+                Au.SBCount = 2;
+                SB.push(Au);
+
+                var arr = cardCollection.find
+                ({
+                    title: 'Armitage Codebusting'
+                });
+
+                var AC = arr[0];
+                AC.quantity = 0;
+                AC.SBCount = 3;
+                SB.push(AC);
+
             }
 
             return SB;

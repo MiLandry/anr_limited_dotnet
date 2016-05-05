@@ -11,6 +11,7 @@
     <script src="../js/config.js"></script>
     <script src="../js/cards.js"></script>
     <script src="../js/MainController.js"></script>
+    <script src="../js/utility.js"></script>
 
 </head>
 
@@ -21,10 +22,19 @@
                 <br />
                 <br />
 
+                <form>
                 <button id="draftRunnerBtn" ng-click="newRunnerIDs(3)">Draft Runner</button>
                 <button id="draftCorpBtn" ng-click="newCorpIDs(3)">Draft Corp</button>
-                <button id="styleBtn" ng-click= "setSideboard()">Style</button>
+                <button id="getHelp" ng-click= "getHelp()">Help</button>
+                    <br />
+                    <label>Batch Size: </label>
+                    <button ng-click="decreaseBatchSize()">less Cards</button>
+                    {{cardsPerBatch}}
+                    <button ng-click="increaseBatchSize()">More Cards</button>
+                </form>
                 <br />
+                <br />
+                <p>Cards remaining: {{cardsRemaining}}</p>
 
                 <div id="batchArea">
 
@@ -47,7 +57,7 @@
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
                             <th class="tg-yw4l">Type</th>
-                            <th class="tg-yw4l">Move to SB</th>
+                            <th class="tg-yw4l">Sideboard</th>
                             
                         </tr>
                         <tr ng-repeat="card in deckList track by $index">
@@ -66,7 +76,7 @@
                         <tr>
                             <th class="tg-yw4l">Card</th>
                             <th class="tg-yw4l">Quantity</th>
-                            <th class="tg-yw4l">Move to SB</th>
+                            <th class="tg-yw4l">Deck</th>
                         </tr>
                         <tr ng-repeat="card in sideboard track by $index">
                             <td>{{card.title}}</td>

@@ -5,6 +5,7 @@
 /// <reference path="js/config.js" />
 /// <reference path="js/maincontroller.js" />
 /// <reference path="js/ng.js" />
+/// <reference path="js/utility.js" />
 /// <reference path="lib/angular/angular.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js" />
